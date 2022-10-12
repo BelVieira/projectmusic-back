@@ -1,6 +1,8 @@
 package ifpb.edu.br.application.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -11,9 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.mapping.List;
+
 @Table
 @Entity
-public class Album implements Serializable{
+public class Album implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +26,27 @@ public class Album implements Serializable{
 	private String title;
 	private String productionYear;
 	// Atributo para produtora.
-	
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album")
-	private Set<Music> musics;
+	private Set<Music> musics = new HashSet<Music>();
+
+	public Album() {
+
+	}
+
+	public Set<Music> getMusics() {
+		return musics;
+	}
+
+	public void setMusics(Set<Music> musics) {
+		this.musics = musics;
+	}
+
+	public Album(String title, String productionYear) {
+		this.title = title;
+		this.productionYear = productionYear;
+
+	}
 
 	public String getTitle() {
 		return title;

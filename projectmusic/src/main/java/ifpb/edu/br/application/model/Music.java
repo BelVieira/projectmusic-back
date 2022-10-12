@@ -24,16 +24,22 @@ public class Music implements Serializable {
 	@JoinColumn(name = "album_id", nullable = false)
 	private Album album;
 	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
 	public Music() {
 
 	}
 
-	public Music(String id, String nome, float duracao, String artista) {
-		this.id = id;
+	public Music(String nome, String artista, float duracao) {
 		this.nome = nome;
-		this.duracao = duracao;
 		this.artista = artista;
-
+		this.duracao = duracao;
 	}
 
 	public String getId() {

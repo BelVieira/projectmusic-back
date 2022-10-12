@@ -2,15 +2,14 @@ package ifpb.edu.br.application.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
+import ifpb.edu.br.application.model.Album;
 import ifpb.edu.br.application.model.Music;
 import ifpb.edu.br.application.service.MusicService;
 
-@RequestMapping("/musiccontroller")
-@RestController
 
+@Controller
 public class MusicController {
 
 	@Autowired
@@ -20,8 +19,8 @@ public class MusicController {
 
 	}
 
-	public void create(String nome, String artista, float duracao) {
-		musicService.create(nome, artista, duracao);
+	public void create(String nome, String artista, float duracao, Album album) {
+		musicService.create(nome, artista, duracao, album);
 	}
 
 	public void update(Integer id, String nameNew) {

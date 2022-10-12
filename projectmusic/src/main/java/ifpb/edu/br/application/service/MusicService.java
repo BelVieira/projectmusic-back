@@ -14,16 +14,14 @@ public class MusicService {
 	
 	@Autowired
 	private MusicRepository musicRepository;
-		
-
-	public void create(String nome, String artista, float duracao) {
-		Music musica = new Music();
-		musica.setNome(nome);
-		musica.setArtista(artista);
-		musica.setDuração(duracao);
-		Album album = new Album();
-		album.setTitle("Título");
-		musicRepository.save(musica);		
+	
+	public void create(String nome, String artista, float duracao, Album album) {
+		Music music = new Music();
+		music.setNome(nome);
+		music.setArtista(artista);
+		music.setDuração(duracao);
+		music.setAlbum(album);
+		musicRepository.save(music);	
 		
 	}
 

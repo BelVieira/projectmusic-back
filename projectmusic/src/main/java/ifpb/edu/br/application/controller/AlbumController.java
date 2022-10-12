@@ -3,14 +3,11 @@ package ifpb.edu.br.application.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.stereotype.Controller;
 import ifpb.edu.br.application.model.Album;
 import ifpb.edu.br.application.service.AlbumService;
 
-@RequestMapping("/albumcontroller")
-@RestController
+@Controller
 public class AlbumController {
 
 		@Autowired
