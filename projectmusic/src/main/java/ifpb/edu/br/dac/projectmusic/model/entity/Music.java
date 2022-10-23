@@ -1,4 +1,4 @@
-package ifpb.edu.br.application.model;
+package ifpb.edu.br.dac.projectmusic.model.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,7 +15,7 @@ public class Music implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	private String nome;
 	private float duracao;
 	private String artista;
@@ -42,11 +42,11 @@ public class Music implements Serializable {
 		this.duracao = duracao;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -62,7 +62,7 @@ public class Music implements Serializable {
 		return duracao;
 	}
 
-	public void setDuração(float duracao) {
+	public void setDuracao(float duracao) {
 		this.duracao = duracao;
 	}
 

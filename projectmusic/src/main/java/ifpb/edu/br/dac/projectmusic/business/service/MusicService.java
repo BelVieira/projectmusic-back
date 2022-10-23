@@ -1,13 +1,13 @@
-package ifpb.edu.br.application.service;
+package ifpb.edu.br.dac.projectmusic.business.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ifpb.edu.br.application.model.Album;
-import ifpb.edu.br.application.model.Music;
-import ifpb.edu.br.application.repository.MusicRepository;
+import ifpb.edu.br.dac.projectmusic.model.entity.Album;
+import ifpb.edu.br.dac.projectmusic.model.entity.Music;
+import ifpb.edu.br.dac.projectmusic.model.repository.MusicRepository;
 
 @Service
 public class MusicService {
@@ -19,16 +19,23 @@ public class MusicService {
 		Music music = new Music();
 		music.setNome(nome);
 		music.setArtista(artista);
-		music.setDuração(duracao);
+		music.setDuracao(duracao);
 		music.setAlbum(album);
 		musicRepository.save(music);	
 		
 	}
+	public Music save(Music music) {
+		Music music2 = new Music();
+		music2.setId(music.getId());
+		music2.setNome(music.getNome());
+		music2.setArtista(music.getArtista());
+		return musicRepository.save(music2);
+	}
 
-	public void update(Integer id, String nameNew) {
+	public Music update(Integer id, String nameNew) {
 		Music musica = musicRepository.findById(id).get();
 		musica.setNome(nameNew);
-		musicRepository.save(musica);
+		return musicRepository.save(musica);
 	}
 
 	public void delete(Integer id) {
