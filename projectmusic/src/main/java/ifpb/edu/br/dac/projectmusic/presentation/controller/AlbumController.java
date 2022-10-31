@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifpb.edu.br.dac.projectmusic.business.service.AlbumService;
 import ifpb.edu.br.dac.projectmusic.business.service.ConverterService;
 import ifpb.edu.br.dac.projectmusic.model.entity.Album;
-import ifpb.edu.br.dac.projectmusic.model.entity.Music;
 import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.AlbumDTO;
-import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.MusicDTO;
 
 @RestController
 @RequestMapping("/api/album")
@@ -50,10 +48,6 @@ public class AlbumController {
 
 	}
 
-	public void create(String title, int productionYear) {
-		albumService.create(title, productionYear);
-	}
-
 	@PutMapping("{id}")
 	public ResponseEntity update(@PathVariable("id") Integer id, @RequestBody AlbumDTO dto) {
 		try {
@@ -78,18 +72,16 @@ public class AlbumController {
 	}
 
 	@GetMapping
-	public ResponseEntity find(
-			@RequestParam(value = "id", required = false) int id,
+	public ResponseEntity find(@RequestParam(value = "id", required = false) int id,
 			@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "productionYear", required = false) int productionYear
-	) {
+			@RequestParam(value = "productionYear", required = false) int productionYear) {
 		try {
 			Album album = new Album();
 			album.setId(id);
 			album.setTitle(title);
 			album.setProductionYear(productionYear);
-			
-			List<Album> albuns = (List<Album>) albumService.find(album);
+
+			List<Album> albuns = albumService.find(album);
 			List<AlbumDTO> dtos = converterService.albumToDTO(albuns);
 			return ResponseEntity.ok(dtos);
 

@@ -3,6 +3,9 @@ package ifpb.edu.br.dac.projectmusic.business.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import ifpb.edu.br.dac.projectmusic.model.entity.Album;
@@ -15,26 +18,19 @@ public class MusicService {
 	@Autowired
 	private MusicRepository musicRepository;
 	
-	public void create(String nome, String artista, float duracao, Album album) {
+	
+	public Music save(Music newMusic) {
 		Music music = new Music();
-		music.setNome(nome);
-		music.setArtista(artista);
-		music.setDuracao(duracao);
-		music.setAlbum(album);
-		musicRepository.save(music);	
-		
-	}
-	public Music save(Music music) {
-		Music music2 = new Music();
-		music2.setId(music.getId());
-		music2.setNome(music.getNome());
-		music2.setArtista(music.getArtista());
-		return musicRepository.save(music2);
+		music.setName(newMusic.getName());
+		music.setArtist(newMusic.getArtist());
+		music.setDuration(newMusic.getDuration());
+		music.setAlbum(newMusic.getAlbum());
+		return musicRepository.save(music);
 	}
 
 	public Music update(Integer id, String nameNew) {
 		Music musica = musicRepository.findById(id).get();
-		musica.setNome(nameNew);
+		musica.setName(nameNew);
 		return musicRepository.save(musica);
 	}
 
@@ -43,9 +39,12 @@ public class MusicService {
 
 	}
 
-	public Music find(Integer id) {
-		return musicRepository.findById(id).get();
+	public List<Music> find(Music filter) {
+		Example example = Example.of(filter,
+				ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING));
+		return musicRepository.findAll(example);
 	}
+
 
 	public List<Music> list() {
 		return (List<Music>) musicRepository.findAll();

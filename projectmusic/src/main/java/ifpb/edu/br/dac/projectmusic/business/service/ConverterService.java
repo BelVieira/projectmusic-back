@@ -52,16 +52,19 @@ public class ConverterService {
 	public MusicDTO musicToDTO (Music entity) {
 		MusicDTO dto = new MusicDTO();
 		dto.setId(entity.getId());
-		dto.setNome(entity.getNome());
-		dto.setArtista(entity.getArtista());
-		dto.setDuracao(entity.getDuracao());
+		dto.setName(entity.getName());
+		dto.setArtist(entity.getArtist());
+		dto.setDuration(entity.getDuration());
+		dto.setAlbum(entity.getAlbum());
 		return dto;
 	}
 	public Music dtoToMusic (MusicDTO dto) {
 		Music entity = new Music();
 		entity.setId(dto.getId());
-		entity.setArtista(dto.getArtista());
-		entity.setDuracao(dto.getDuracao());
+		entity.setName(dto.getName());
+		entity.setArtist(dto.getArtist());
+		entity.setDuration(dto.getDuration());
+		entity.setAlbum(dto.getAlbum());
 		return entity;
 	}
 	

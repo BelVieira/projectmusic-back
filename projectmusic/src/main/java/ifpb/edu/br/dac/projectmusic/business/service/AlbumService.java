@@ -9,7 +9,6 @@ import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import ifpb.edu.br.dac.projectmusic.model.entity.Album;
-import ifpb.edu.br.dac.projectmusic.model.entity.Music;
 import ifpb.edu.br.dac.projectmusic.model.repository.AlbumRepository;
 
 @Service
@@ -18,22 +17,12 @@ public class AlbumService {
 	@Autowired
 	private AlbumRepository albumRepository;
 
-	public void create(String title, int productionYear) {
+	public Album save(Album newAlbum) {
 		Album album = new Album();
-		Music music = new Music();
-		album.setTitle(title);
-		album.setProductionYear(productionYear);
-		albumRepository.save(album);
-		album.getMusics().add(music);
-
-	}
-
-	public Album save(Album album) {
-		Album album2 = new Album();
-		album2.setId(album.getId());
-		album2.setTitle(album.getTitle());
-		album2.setProductionYear(album.getProductionYear());
-		return albumRepository.save(album2);
+		album.setId(newAlbum.getId());
+		album.setTitle(newAlbum.getTitle());
+		album.setProductionYear(newAlbum.getProductionYear());
+		return albumRepository.save(newAlbum);
 	}
 
 	public Album update(Album a) {

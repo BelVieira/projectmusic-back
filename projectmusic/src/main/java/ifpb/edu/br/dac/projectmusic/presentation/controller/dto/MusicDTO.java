@@ -4,27 +4,27 @@ import ifpb.edu.br.dac.projectmusic.model.entity.Album;
 
 public class MusicDTO {
 	private int id;
-	private String nome;
-	private float duracao;
-	private String artista;
-	private Album album;
+	private String name;
+	private String artist;
+	private float duration;
+	private Album album_id;
 	
 	public Album getAlbum() {
-		return album;
+		return album_id;
 	}
 
 	public void setAlbum(Album album) {
-		this.album = album;
+		this.album_id = album;
 	}
 
 	public MusicDTO() {
 
 	}
 
-	public MusicDTO(String nome, String artista, float duracao) {
-		this.nome = nome;
-		this.artista = artista;
-		this.duracao = duracao;
+	public MusicDTO(String name, String artist, float duration) {
+		this.name = name;
+		this.artist = artist;
+		this.duration = duration;
 	}
 
 	public int getId() {
@@ -35,27 +35,27 @@ public class MusicDTO {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public float getDuracao() {
-		return duracao;
+	public float getDuration() {
+		return duration;
 	}
 
-	public void setDuracao(float duracao) {
-		this.duracao = duracao;
+	public void setDuration(float duration) {
+		this.duration = duration;
 	}
 
-	public String getArtista() {
-		return artista;
+	public String getArtist() {
+		return artist;
 	}
 
-	public void setArtista(String artista) {
-		this.artista = artista;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
 }

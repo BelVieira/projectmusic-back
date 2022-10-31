@@ -49,16 +49,12 @@ public class MusicController {
 
 	}
 
-	public void create(String nome, String artista, float duracao, Album album) {
-		musicService.create(nome, artista, duracao, album);
-	}
-
 	@PutMapping("{id}")
 	public ResponseEntity update(@PathVariable("id") Integer id, @RequestBody MusicDTO dto) {
 		try {
 			dto.setId(dto.getId());
 			Music entity = converterService.dtoToMusic(dto);
-			entity = musicService.update(id, dto.getNome());
+			entity = musicService.update(id, dto.getName());
 			dto = converterService.musicToDTO(entity);
 			return ResponseEntity.ok(dto);
 		} catch (Exception e) {
@@ -78,13 +74,20 @@ public class MusicController {
 	}
 
 	@GetMapping
-	public ResponseEntity find(@RequestParam(value = "id", required = false) int id
-
-	) {
+	public ResponseEntity find(
+			@RequestParam(value = "id", required = false) int id,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "artist", required = false) String artist,
+			@RequestParam(value = "duration", required = false) float duration,
+			@RequestParam(value = "album_id", required = false) Album album) {
 		try {
 			Music music = new Music();
 			music.setId(id);
-			List<Music> musics = (List<Music>) musicService.find(music.getId());
+			music.setName(name);
+			music.setArtist(artist);
+			music.setDuration(duration);
+			music.setAlbum(album);
+			List<Music> musics = musicService.find(music);
 			List<MusicDTO> dtos = converterService.musicToDTO(musics);
 			return ResponseEntity.ok(dtos);
 

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Table
 @Entity
 public class Music implements Serializable {
@@ -16,30 +17,31 @@ public class Music implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nome;
-	private float duracao;
-	private String artista;
+	private String name;
+	private String artist;
+	private float duration;
 
 	@ManyToOne
-	@JoinColumn(name = "album_id", nullable = false)
-	private Album album;
+	@JoinColumn(name = "album_id", nullable = true)
+	private Album album_id;
 	
-	public Album getAlbum() {
-		return album;
-	}
-
-	public void setAlbum(Album album) {
-		this.album = album;
-	}
-
 	public Music() {
 
 	}
 
-	public Music(String nome, String artista, float duracao) {
-		this.nome = nome;
-		this.artista = artista;
-		this.duracao = duracao;
+	public Music(String name, String artist, float duration, Album album_id) {
+		this.name = name;
+		this.artist = artist;
+		this.duration = duration;
+		this.album_id = album_id;
+	}
+	
+	public Album getAlbum() {
+		return album_id;
+	}
+
+	public void setAlbum(Album album_id) {
+		this.album_id = album_id;
 	}
 
 	public int getId() {
@@ -50,28 +52,34 @@ public class Music implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public float getDuracao() {
-		return duracao;
+	public float getDuration() {
+		return duration;
 	}
 
-	public void setDuracao(float duracao) {
-		this.duracao = duracao;
+	public void setDuration(float duration) {
+		this.duration = duration;
 	}
 
-	public String getArtista() {
-		return artista;
+	public String getArtist() {
+		return artist;
 	}
 
-	public void setArtista(String artista) {
-		this.artista = artista;
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	@Override
+	public String toString() {
+		return "Music [id=" + id + ", name=" + name + ", artist=" + artist + ", duration=" + duration + ", album_id="
+				+ album_id + "]";
 	}
 
 	@Override

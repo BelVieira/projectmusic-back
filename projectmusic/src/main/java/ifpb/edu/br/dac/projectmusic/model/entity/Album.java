@@ -25,10 +25,17 @@ public class Album implements Serializable {
 	private int productionYear;
 	// Atributo para produtora.
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album_id")
 	private Set<Music> musics = new HashSet<Music>();
 
 	public Album() {
+
+	}
+	
+	public Album(String title, int productionYear, Set<Music> musics) {
+		this.title = title;
+		this.productionYear = productionYear;
+		this.musics = musics;
 
 	}
 
@@ -38,12 +45,6 @@ public class Album implements Serializable {
 
 	public void setMusics(Set<Music> musics) {
 		this.musics = musics;
-	}
-
-	public Album(String title, int productionYear) {
-		this.title = title;
-		this.productionYear = productionYear;
-
 	}
 
 	public String getTitle() {
@@ -72,12 +73,7 @@ public class Album implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public String toString() {
-		return "Album [id=" + id + ", titulo=" + title + ", anoProducao=" + productionYear + ", musics=" + musics + "]";
+		return Objects.hash(id, musics, productionYear, title);
 	}
 
 	@Override
@@ -89,7 +85,14 @@ public class Album implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Album other = (Album) obj;
-		return id == other.id;
+		return id == other.id && Objects.equals(musics, other.musics) && productionYear == other.productionYear
+				&& Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String toString() {
+		return "Album [id=" + id + ", title=" + title + ", productionYear=" + productionYear + ", musics=" + musics
+				+ "]";
 	}
 
 }
