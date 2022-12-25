@@ -8,4 +8,6 @@ public interface SystemRoleService {
 	
 	 public SystemRole findByName(String name);
 	 public SystemRole findDefault();
-}
+	 public void createDefaultValues();
+	 }
+

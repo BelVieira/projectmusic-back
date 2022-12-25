@@ -5,23 +5,28 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
-
+@Table(name="users")
 @Entity
 public class User implements Serializable, UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	private String email;
 	private String password;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<SystemRole> roles;
 
-	public User() {
-
+	public User(){
+		
 	}
 
 	public User(Integer id, String name, String email, String password) {

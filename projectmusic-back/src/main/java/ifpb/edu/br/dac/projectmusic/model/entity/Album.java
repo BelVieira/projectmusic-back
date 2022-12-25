@@ -12,10 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
-@Table
 @Entity
 public class Album implements Serializable{
 

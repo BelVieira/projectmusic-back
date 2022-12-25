@@ -14,6 +14,7 @@ public class SystemRoleServiceImpl implements SystemRoleService {
 	@Autowired
 	private SystemRoleRepository repository;
 
+	@Override
 	public void createDefaultValues() {
 		for (AVAILABLE_ROLES availableRole : AVAILABLE_ROLES.values()) {
 			SystemRole role = findByName(availableRole.name());

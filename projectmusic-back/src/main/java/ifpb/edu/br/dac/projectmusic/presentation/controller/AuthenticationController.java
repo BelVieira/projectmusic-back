@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import ifpb.edu.br.dac.projectmusic.business.service.AuthenticationService;
 import ifpb.edu.br.dac.projectmusic.business.service.ConverterService;
+import ifpb.edu.br.dac.projectmusic.business.service.SystemUserService;
 import ifpb.edu.br.dac.projectmusic.business.service.TokenService;
 import ifpb.edu.br.dac.projectmusic.business.service.UserService;
 import ifpb.edu.br.dac.projectmusic.model.entity.User;
@@ -25,7 +26,7 @@ import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.UserDTO;
 public class AuthenticationController {
 
     @Autowired
-    private UserService userService;
+    private SystemUserService userService;
     @Autowired
     private ConverterService converterService;
     @Autowired

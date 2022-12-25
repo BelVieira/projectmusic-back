@@ -25,9 +25,10 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 	private AuthenticationManager authenticationManager;
 	
 	@Override
-	public String login(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public String login(String username, String password) {
+		Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		User user = systemUserService.findByEmail(username);
+		return tokenService.generate(user);
 	}
 
 	@Override
