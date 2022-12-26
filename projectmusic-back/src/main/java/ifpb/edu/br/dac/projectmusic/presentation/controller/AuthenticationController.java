@@ -14,7 +14,7 @@ import ifpb.edu.br.dac.projectmusic.business.service.AuthenticationService;
 import ifpb.edu.br.dac.projectmusic.business.service.ConverterService;
 import ifpb.edu.br.dac.projectmusic.business.service.SystemUserService;
 import ifpb.edu.br.dac.projectmusic.business.service.TokenService;
-import ifpb.edu.br.dac.projectmusic.business.service.UserService;
+
 import ifpb.edu.br.dac.projectmusic.model.entity.User;
 import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.LoginDTO;
 import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.TokenDTO;

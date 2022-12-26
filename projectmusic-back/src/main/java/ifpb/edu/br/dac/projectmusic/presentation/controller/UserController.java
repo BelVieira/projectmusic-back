@@ -23,13 +23,12 @@ import ifpb.edu.br.dac.projectmusic.presentation.controller.dto.UserDTO;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-	
+
 	@Autowired
 	private ConverterService converterService;
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@PostMapping
 	public ResponseEntity save(@RequestBody UserDTO dto) {
 		try {
@@ -70,7 +69,7 @@ public class UserController {
 
 	@GetMapping
 	public ResponseEntity find(@RequestParam(value = "id", required = false) Integer id,
-			@RequestParam(value = "licencePlate", required = false) String name ,
+			@RequestParam(value = "licencePlate", required = false) String name,
 			@RequestParam(value = "licencePlate", required = false) String email) {
 
 		try {
@@ -78,6 +77,23 @@ public class UserController {
 			filter.setId(id);
 			filter.setName(name);
 			filter.setEmail(email);
+
+			List<User> entities = userService.find(filter);
+			List<UserDTO> dtos = converterService.userToDTO(entities);
+			return ResponseEntity.ok(dtos);
+
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+
+	}
+
+	@GetMapping({ "id" })
+	public ResponseEntity findFilter(@RequestParam(value = "id", required = false) Integer id) {
+
+		try {
+			User filter = new User();
+			filter.setId(id);
 
 			List<User> entities = userService.find(filter);
 			List<UserDTO> dtos = converterService.userToDTO(entities);
